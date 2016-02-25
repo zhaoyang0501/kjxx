@@ -27,6 +27,11 @@
 			<div class="tab-pane active dailyreport" id="dailyreport">
 				<ul id="nav" class="accordion-nav" >
 				<c:if test="${sessionScope.adminuser.username=='admin'}">
+					<li><a href="${pageContext.request.contextPath}/admin/project/index"><i class="icon-pencil"></i>科研项目管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/project/create"><i class="icon-pencil"></i>科研项目发布</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/category/create"><i class="icon-pencil"></i>系统分类管理</a></li>
+				
+					<!-- 
 					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>学生管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/teacher/index"><i class="icon-pencil"></i>教师管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/news/create"><i class="icon-pencil"></i>公告发布</a></li>
@@ -36,7 +41,7 @@
 					<li><a href="${pageContext.request.contextPath}/admin/grade/index"><i class="icon-pencil"></i>培训计划管理</a></li>	
 					<li><a href="${pageContext.request.contextPath}/admin/timetable/index"><i class="icon-pencil"></i>课表管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/attence/index"><i class="icon-pencil"></i>考勤管理</a></li>
-		
+					 -->
 				</c:if>
 				<c:if test="${sessionScope.adminuser.username!='admin'}">
 					<li><a href="${pageContext.request.contextPath}/admin/work/index"><i class="icon-pencil"></i>就业管理</a></li>

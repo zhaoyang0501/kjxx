@@ -14,21 +14,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pzy.entity.Category;
+import com.pzy.entity.Project;
 import com.pzy.service.CategoryService;
-/***课程管理
+import com.pzy.service.ProjectService;
+/***发布公告到首页
  * @author panchaoyang
- *qq 263608237
+ * qq:263608237
  */
 @Controller
-@RequestMapping("/admin/category")
-public class CategoryController {
+@RequestMapping("/admin/project")
+public class ProjectController {
+	@Autowired
+	private ProjectService projectService;
+	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String create(Model model) {
+		model.addAttribute("categorys",categoryService.findAll());
+		return "admin/project/create";
+	}
 	@RequestMapping("index")
-	public String index(Model model) {
-		
-      		return "admin/category/index";
+	public String index() {
+		return "admin/project/index";
+	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String save(Project project,Model model) {
+		project.setCreateDate(new Date());
+		projectService.save(project);
+		model.addAttribute("tip","发布成功");
+		return "admin/project/create";
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
@@ -40,31 +57,12 @@ public class CategoryController {
 			) throws ParseException {
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<Category> categorys = categoryService.findAll(pageNumber, pageSize, name);
+		Page<Project> users = projectService.findAll(pageNumber, pageSize, name);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("aaData", categorys.getContent());
-		map.put("iTotalRecords", categorys.getTotalElements());
-		map.put("iTotalDisplayRecords", categorys.getTotalElements());
+		map.put("aaData", users.getContent());
+		map.put("iTotalRecords", users.getTotalElements());
+		map.put("iTotalDisplayRecords", users.getTotalElements());
 		map.put("sEcho", sEcho);
-		return map;
-	}
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> save(Category category) {
-		category.setCreateDate(new Date());
-		categoryService.save(category);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", "success");
-		map.put("msg", "保存成功");
-		return map;
-	}
-	@RequestMapping(value = "/update")
-	@ResponseBody
-	public Map<String, Object> update(Category category) {
-		categoryService.save(category);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", "success");
-		map.put("msg", "保存成功");
 		return map;
 	}
 	@RequestMapping(value = "/delete/{id}")
@@ -72,7 +70,7 @@ public class CategoryController {
 	public Map<String, Object> delete(@PathVariable Long id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			categoryService.delete(id);
+			projectService.delete(id);
 			map.put("state", "success");
 			map.put("msg", "删除成功");
 		} catch (Exception e) {
@@ -80,15 +78,5 @@ public class CategoryController {
 			map.put("msg", "删除失败，外键约束");
 		}
         return map;
-	}
-
-	@RequestMapping(value = "/get/{id}")
-	@ResponseBody
-	public Map<String, Object> get(@PathVariable Long id ) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("object", categoryService.find(id));
-		map.put("state", "success");
-		map.put("msg", "成功");
-		return map;
 	}
 }

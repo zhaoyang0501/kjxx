@@ -28,11 +28,17 @@
 					<div class="span12">
 						<div class="content-widgets ">
 							<div class="widget-head  bondi-blue" >
-								<h3>课程管理</h3>
+								<h3>分类管理</h3>
 							</div>
 							<div class="box well form-inline">
 								
-								<input type="text" id="_name" placeholder="课程名称">
+								<select name="_name" id='_name'>
+										<option value="10">专家学者信息模块</option>
+										<option value="20">科研项目模块</option>
+										<option value="30">科研论文模块</option>
+										<option value="40">专利文献模块</option>
+										<option value="50">实验设备模块</option>
+									</select>
 								<a onclick="$.category.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
@@ -44,8 +50,9 @@
 									<thead>
 										<tr>
 											<th >id</th>
-											<th >课程名称</th>
-											<th >课程介绍</th>
+											<th >所属模块</th>
+											<th >分类名称</th>
+											<th >分类备注</th>
 											<th >创建时间</th>
 											<th >操作</th>
 										</tr>
@@ -74,6 +81,19 @@
 					<div class="form-container grid-form form-background left-align form-horizontal">
 						<form action="" method="get" id=''>
 							<input type="hidden"  name='id' id="id" value="">
+							
+							<div class="control-group">
+								<label for="title" class="control-label">模块菜单：</label>
+								<div class="controls">
+									<select name="type" id='type'>
+										<option value="10">专家学者信息模块</option>
+										<option value="20">科研项目模块</option>
+										<option value="30">科研论文模块</option>
+										<option value="40">专利文献模块</option>
+										<option value="50">实验设备模块</option>
+									</select>
+								</div>
+							</div>
 							
 							<div class="control-group">
 								<label for="title" class="control-label">课程名称：</label>

@@ -1,4 +1,4 @@
-jQuery.category = {
+jQuery.adminProject = {
 		userDataTable:null,
 		initSearchDataTable : function() {
 			if (this.userDataTable == null) {
@@ -26,7 +26,7 @@ jQuery.category = {
 					"sServerMethod" : "POST",
 					"bProcessing" : true,
 					"bSort" : false,
-					"sAjaxSource" : $.ace.getContextPath() + "/admin/category/list",
+					"sAjaxSource" : $.ace.getContextPath() + "/admin/project/list",
 					"fnDrawCallback" : function(oSettings) {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
@@ -51,36 +51,19 @@ jQuery.category = {
 					"aoColumns" : [{
 						"mDataProp" : "id"
 					}, {
-						"mDataProp" : "type"
-					}, {
-						"mDataProp" : "name"
+						"mDataProp" : "title"
 					},{
-						"mDataProp" : "remark"
+						"mDataProp" : "user"
 					},{
 						"mDataProp" : "createDate"
 					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
-							{
-								'aTargets' : [1],
-								'fnRender' : function(oObj, sVal) {
-									if(sVal=='10')
-										return "专家学者信息模块";
-									else if(sVal=='20')
-										return "科研项目模块";
-									else if(sVal=='30')
-										return "科研论文模块";
-									else if(sVal=='40')
-										return "专利文献模块";
-									else if(sVal=='50')
-										return "实验设备模块";
-								}
-							},
 						{
-							'aTargets' : [5],
+							'aTargets' : [4],
 							'fnRender' : function(oObj, sVal) {
-								return" <button class=\"btn2 btn-info\" onclick=\"$.category.showEdit("+oObj.aData.id+")\"><i class=\"icon-edit\"></i> 修改</button>  <button class=\"btn2 btn-info\" onclick=\"$.category.deleteUser("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
+								return " <button class=\"btn2 btn-info\" onclick=\"$.adminProject.deleteproject("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}
 						},
 					 {
@@ -97,17 +80,17 @@ jQuery.category = {
 			}
 
 		},
-		deleteUser :function(id){
+		deleteproject :function(id){
 			bootbox.confirm( "是否确认删除？", function (result) {
 	            if(result){
 	            	$.ajax({
 	        			type : "get",
-	        			url : $.ace.getContextPath() + "/admin/category/delete/"+id,
+	        			url : $.ace.getContextPath() + "/admin/project/delete/"+id,
 	        			dataType : "json",
 	        			success : function(json) {
 	        				if(json.state=='success'){
 	        					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-	        					$.category.initSearchDataTable();
+	        					$.adminProject.initSearchDataTable();
 	        				}else{
 	        					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
 	        				}
@@ -126,7 +109,7 @@ jQuery.category = {
 			$("#id").val(id);
 			$.ajax({
     			type : "get",
-    			url : $.ace.getContextPath() + "/admin/category/get/"+id,
+    			url : $.ace.getContextPath() + "/admin/project/get/"+id,
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
@@ -143,14 +126,14 @@ jQuery.category = {
 		saveUser: function(id){
 			$.ajax({
     			type : "post",
-    			url : $.ace.getContextPath() + "/admin/category/save",
+    			url : $.ace.getContextPath() + "/admin/project/save",
     			data:$("form").serialize(),
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
     					$("#_modal").modal('hide');
     					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-    					$.category.initSearchDataTable();
+    					$.adminProject.initSearchDataTable();
     				}else{
     					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
     				}

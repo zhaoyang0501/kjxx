@@ -47,21 +47,21 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>科研项目发布</h3>
+								<h3>专家学者发布</h3>
 							</div>
 							
 							<div class="widget-container">
 								
-							<form action="${pageContext.request.contextPath}/admin/project/create" method="post" id=''>
+							<form action="${pageContext.request.contextPath}/admin/expert/create" method="post" id=''>
 							<div class="control-group">
-								<label for="title" class="control-label">标题：</label>
+								<label for="title" class="control-label">专家简介：</label>
 								<div class="controls">
 									<input type="text" name="title" placeholder="">
 								</div>
 							</div>
 							
 							<div class="control-group">
-								<label for="title" class="control-label">分类：</label>
+								<label for="title" class="control-label">专家家学者领域：</label>
 								<div class="controls">
 									<select name='category.id'>
 										<c:forEach var="bean" items="${categorys}">
@@ -72,20 +72,20 @@
 							</div>
 							
 							<div class="control-group">
-								<label for="title" class="control-label">申请人：</label>
+								<label for="title" class="control-label">专家学者名称：</label>
 								<div class="controls">
 									<input type="text" name="user" placeholder="">
 								</div>
 							</div>
 							<div class="control-group">
-								<label for="title" class="control-label">申请单位：</label>
+								<label for="title" class="control-label">联系方式：</label>
 								<div class="controls">
-									<input type="text" name="unit" placeholder="">
+									<input type="text" name="tel" placeholder="">
 								</div>
 							</div>
 							
 							<div class="control-group">
-								<label for="title" class="control-label">科研项目介绍：</label>
+								<label for="title" class="control-label">专家学者详细介绍：</label>
 								<div class="controls">
 									<textarea  id='context' name='remark' style="width: 100%;height: 600px"></textarea>
 								</div>

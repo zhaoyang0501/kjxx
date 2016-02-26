@@ -70,97 +70,22 @@
       
       <section class="envor-section">
         <div class="container">
-           <div class="row" style="margin-bottom: 30px">
-           
-           <div class="col-lg-3">
-            <aside class="envor-widget envor-category-widget">
-              <h3> 分类</h3>
-              <div class="envor-widget-inner">
-                <ul>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i> 分类1</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">16</span></p>
-                    <small></small>
-                  </li>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i>  分类2</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">21</span></p>
-                    <small>Integer ante velit, tempus eu libero id.</small>
-                  </li>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i>  分类3</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">7</span></p>
-                    <small>Sed feugiat purus eu diam.</small>
-                  </li>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i>  分类4</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">11</span></p>
-                    <small>Nunc pretium lorem ullamcorper tincidunt.</small>
-                  </li>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i>  分类5</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">35</span></p>
-                    <small>Vestibulum placerat, nulla eu molestie.</small>
-                  </li>
-                </ul>
-              </div>
-            </aside>
-          
-            </div>
-           
-           
-           		<div class="col-lg-9">
-	           		<div style="float: right;padding-bottom: 20px">
-	           		<form action="">
-	           			<input type="text"  name='email'>
-              			<input type="submit" value="查找" class="envor-btn envor-btn-normal envor-btn-primary">
-	           		</form>
-	           		</div>
-           			<table class="table table-bordered">
-						<thead>
-							<tr>
-									<th>标题</th>
-									<th>发表日期</th>
-									<th>查看</th>
-							 </tr>
-						</thead>
-						<tbody>
-							<tr>
-									<th><a href="viewgrade?id=${bean.id }">宁波市高新区打造创新生态高地</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-06-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							<tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-						</tbody>
-						</table>
-		        </div>
-			</div> 
-			
-			
+          <div class="row" style="margin-bottom: 30px">
+          <div class='col-lg-12'>
+			<article >
+                  
+                <header>
+                  <h3 style="margin-top: 0px;"><i class="fa fa-pencil"></i> <span>${bean.title }</span> </h3>
+             
+                </header>
+               	 <p>申请时间：2016-01-12</p>
+                  <p>申请人：  ${bean.user }</p>
+                   <p>申请单位：  ${bean.unit }</p>
+             ${bean.remark }
+             
+             
+              </article>   
+          </div>
         </div>
       </section>
     </div>
@@ -192,6 +117,26 @@
     <script src="js/layerslider/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
     <script src="js/jquery.rivathemes.js"></script>
     <script type="text/javascript">
+    $('document').ready(function() {
+        /*
+
+        Sorting
+
+        */
+        $('#faq-sorting').rivaSorting({
+          showAll : 1
+        });
+        /*
+
+        Footer News Slider
+
+        */
+        $('#footer-news').rivaSlider({
+          visible : 1,
+          selector : 'envor-post-preview'
+        });
+    });
+
       $('document').ready(function() {
           /*
 

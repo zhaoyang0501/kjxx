@@ -77,26 +77,12 @@
               <h3> 分类</h3>
               <div class="envor-widget-inner">
                 <ul>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i> 分类1</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">16</span></p>
-                    <small></small>
-                  </li>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i>  分类2</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">21</span></p>
-                    <small>Integer ante velit, tempus eu libero id.</small>
-                  </li>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i>  分类3</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">7</span></p>
-                    <small>Sed feugiat purus eu diam.</small>
-                  </li>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i>  分类4</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">11</span></p>
-                    <small>Nunc pretium lorem ullamcorper tincidunt.</small>
-                  </li>
-                  <li>
-                    <p><a href=""><i class="glyphicon glyphicon-folder-open"></i>  分类5</a> <a href=""><i class="fa fa-rss"></i></a> <span class="">35</span></p>
-                    <small>Vestibulum placerat, nulla eu molestie.</small>
-                  </li>
+	                <c:forEach var="bean" items="${cagegorys }">
+	                	 <li>
+	                   	 	<p><a href="project?cid=${bean.id }"><i class="glyphicon glyphicon-folder-open"></i>${bean.name }</a> <a ><i class="fa fa-rss"></i></a></p>
+	                 	 	<small>${bean.remark }</small>
+	                 	 </li>
+	                </c:forEach>
                 </ul>
               </div>
             </aside>
@@ -106,8 +92,8 @@
            
            		<div class="col-lg-9">
 	           		<div style="float: right;padding-bottom: 20px">
-	           		<form action="">
-	           			<input type="text"  name='email'>
+	           		<form action="project" method="post">
+	           			<input type="text"  name='key' placeholder="输入标题、正文、申请人查找">
               			<input type="submit" value="查找" class="envor-btn envor-btn-normal envor-btn-primary">
 	           		</form>
 	           		</div>
@@ -120,41 +106,13 @@
 							 </tr>
 						</thead>
 						<tbody>
-							<tr>
-									<th><a href="viewgrade?id=${bean.id }">宁波市高新区打造创新生态高地</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-06-06</th>
-									<th><span class="label label-success">详情</span></th>
+						<c:forEach items="${projects }" var="bean">
+						<tr>
+									<th><a href="viewproject?id=${bean.id }">${bean.title }</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
+									<th>  <fmt:formatDate value="${bean.createDate }" pattern="yyyy-MM-dd"/> </th>
+									<th><a  href="viewproject?id=${bean.id }"><span class="label label-success">详情</span></a></th>
 							 </tr>
-							<tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
-							 <tr>
-									<th><a href="viewgrade?id=${bean.id }">2015年安徽省技术合同交易成效显著</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
-									<th>2016-01-06</th>
-									<th><span class="label label-success">详情</span></th>
-							 </tr>
+						</c:forEach>
 						</tbody>
 						</table>
 		        </div>

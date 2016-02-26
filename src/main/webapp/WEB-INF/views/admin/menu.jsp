@@ -29,7 +29,12 @@
 				<c:if test="${sessionScope.adminuser.username=='admin'}">
 					<li><a href="${pageContext.request.contextPath}/admin/project/index"><i class="icon-pencil"></i>科研项目管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/project/create"><i class="icon-pencil"></i>科研项目发布</a></li>
-					<li><a href="${pageContext.request.contextPath}/admin/category/create"><i class="icon-pencil"></i>系统分类管理</a></li>
+					
+					<li><a href="${pageContext.request.contextPath}/admin/expert/index"><i class="icon-pencil"></i>专家学者管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/expert/create"><i class="icon-pencil"></i>专家学者发布</a></li>
+					
+					
+					<li><a href="${pageContext.request.contextPath}/admin/category/index"><i class="icon-pencil"></i>系统分类管理</a></li>
 				
 					<!-- 
 					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>学生管理</a></li>

@@ -4,7 +4,7 @@
 <html lang="ch">
 <%@ include file="../common/meta.jsp"%>
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.project.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.expert.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -39,12 +39,12 @@
 					<div class="span12">
 						<div class="content-widgets ">
 							<div class="widget-head  bondi-blue" >
-								<h3>科研项目管理</h3>
+								<h3>专家管理</h3>
 							</div>
 							<div class="box well form-inline">
 								<span>标题：</span>
 								<input type="text" id="_name" >
-								<a onclick="$.adminProject.initSearchDataTable()"
+								<a onclick="$.adminExpert.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
 							<div class="widget-container">
@@ -56,7 +56,7 @@
 											<th >id</th>
 											<th >分类</th>
 											<th >标题</th>
-											<th >申请人</th>
+											<th >专家学者姓名</th>
 											<th >发布时间</th>
 											<th >操作</th>
 										</tr>

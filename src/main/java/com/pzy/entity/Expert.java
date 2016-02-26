@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "t_Project")
-public class Project {
+@Table(name = "t_expert")
+public class Expert {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -27,10 +27,43 @@ public class Project {
 	@ManyToOne
 	private Category category;
 	
+	private String tel;
+	
 	private String user;
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+	private String addr;
 	
-	private String unit;
-	
+	private String email;
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -61,22 +94,6 @@ public class Project {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public String getUnit() {
-		return unit;
-	}
-
-	public void setUnit(String unit) {
-		this.unit = unit;
 	}
 
 	public Date getCreateDate() {

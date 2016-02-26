@@ -14,38 +14,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pzy.entity.Project;
+import com.pzy.entity.Expert;
 import com.pzy.service.CategoryService;
-import com.pzy.service.ProjectService;
-/***发布公告到首页
+import com.pzy.service.ExpertService;
+
+/***专家学者信息
  * @author panchaoyang
  * qq:263608237
  */
 @Controller
-@RequestMapping("/admin/project")
-public class ProjectController {
+@RequestMapping("/admin/expert")
+public class ExpertController {
 	@Autowired
-	private ProjectService projectService;
+	private ExpertService expertService;
 	
 	@Autowired
 	private CategoryService categoryService;
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create(Model model) {
-		model.addAttribute("categorys",categoryService.findByType("20"));
-		return "admin/project/create";
+		model.addAttribute("categorys",categoryService.findByType("10"));
+		return "admin/expert/create";
 	}
 	@RequestMapping("index")
 	public String index() {
-		return "admin/project/index";
+		return "admin/expert/index";
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String save(Project project,Model model) {
-		project.setCreateDate(new Date());
-		projectService.save(project);
+	public String save(Expert expert,Model model) {
+		expert.setCreateDate(new Date());
+		expertService.save(expert);
 		model.addAttribute("tip","发布成功");
-		return "admin/project/create";
+		return "admin/expert/create";
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
@@ -57,7 +58,7 @@ public class ProjectController {
 			) throws ParseException {
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<Project> users = projectService.findAll(pageNumber, pageSize, name);
+		Page<Expert> users = expertService.findAll(pageNumber, pageSize, name);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("aaData", users.getContent());
 		map.put("iTotalRecords", users.getTotalElements());
@@ -70,7 +71,7 @@ public class ProjectController {
 	public Map<String, Object> delete(@PathVariable Long id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			projectService.delete(id);
+			expertService.delete(id);
 			map.put("state", "success");
 			map.put("msg", "删除成功");
 		} catch (Exception e) {

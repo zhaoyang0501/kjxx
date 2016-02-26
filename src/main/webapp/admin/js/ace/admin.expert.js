@@ -1,4 +1,4 @@
-jQuery.adminProject = {
+jQuery.adminExpert = {
 		userDataTable:null,
 		initSearchDataTable : function() {
 			if (this.userDataTable == null) {
@@ -26,7 +26,7 @@ jQuery.adminProject = {
 					"sServerMethod" : "POST",
 					"bProcessing" : true,
 					"bSort" : false,
-					"sAjaxSource" : $.ace.getContextPath() + "/admin/project/list",
+					"sAjaxSource" : $.ace.getContextPath() + "/admin/expert/list",
 					"fnDrawCallback" : function(oSettings) {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
@@ -65,7 +65,7 @@ jQuery.adminProject = {
 						{
 							'aTargets' : [5],
 							'fnRender' : function(oObj, sVal) {
-								return " <button class=\"btn2 btn-info\" onclick=\"$.adminProject.deleteproject("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
+								return " <button class=\"btn2 btn-info\" onclick=\"$.adminExpert.deleteexpert("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}
 						},
 					 {
@@ -82,17 +82,17 @@ jQuery.adminProject = {
 			}
 
 		},
-		deleteproject :function(id){
+		deleteexpert :function(id){
 			bootbox.confirm( "是否确认删除？", function (result) {
 	            if(result){
 	            	$.ajax({
 	        			type : "get",
-	        			url : $.ace.getContextPath() + "/admin/project/delete/"+id,
+	        			url : $.ace.getContextPath() + "/admin/expert/delete/"+id,
 	        			dataType : "json",
 	        			success : function(json) {
 	        				if(json.state=='success'){
 	        					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-	        					$.adminProject.initSearchDataTable();
+	        					$.adminExpert.initSearchDataTable();
 	        				}else{
 	        					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
 	        				}
@@ -111,7 +111,7 @@ jQuery.adminProject = {
 			$("#id").val(id);
 			$.ajax({
     			type : "get",
-    			url : $.ace.getContextPath() + "/admin/project/get/"+id,
+    			url : $.ace.getContextPath() + "/admin/expert/get/"+id,
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
@@ -128,14 +128,14 @@ jQuery.adminProject = {
 		saveUser: function(id){
 			$.ajax({
     			type : "post",
-    			url : $.ace.getContextPath() + "/admin/project/save",
+    			url : $.ace.getContextPath() + "/admin/expert/save",
     			data:$("form").serialize(),
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
     					$("#_modal").modal('hide');
     					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-    					$.adminProject.initSearchDataTable();
+    					$.adminExpert.initSearchDataTable();
     				}else{
     					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
     				}

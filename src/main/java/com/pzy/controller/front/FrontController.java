@@ -14,13 +14,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pzy.entity.Attence;
+import com.pzy.entity.Category;
+import com.pzy.entity.Expert;
 import com.pzy.entity.Grade;
 import com.pzy.entity.News;
+import com.pzy.entity.Project;
 import com.pzy.entity.Report;
 import com.pzy.entity.User;
 import com.pzy.service.AttenceService;
+import com.pzy.service.CategoryService;
+import com.pzy.service.ExpertService;
 import com.pzy.service.GradeService;
 import com.pzy.service.NewsService;
+import com.pzy.service.ProjectService;
 import com.pzy.service.ReportService;
 import com.pzy.service.ScoreService;
 import com.pzy.service.TeacherService;
@@ -54,6 +60,12 @@ public class FrontController {
 	private TeacherService teacherService;
 	@Autowired
 	private NewsService newsService;
+	@Autowired
+	private CategoryService categoryService;
+	@Autowired
+	private ProjectService projectService;
+	@Autowired
+	private ExpertService expertService;
 	/***
 	 * 跳转到首页
 	 * @param model
@@ -65,78 +77,7 @@ public class FrontController {
 		model.addAttribute("news", news.size()==0?null:news.get(0));
 		return "index";
 	}
-	/***
-	 * 点击个人中心
-	 * @return
-	 */
-	@RequestMapping("center")
-	public String center() {
-		return "center";
-	}
-	/***
-	 * 我参与的班级
-	 * @param model
-	 * @param httpSession
-	 * @return
-	 */
-	@RequestMapping("mygrade")
-	public String mygrade(Model model,HttpSession httpSession) {
-		model.addAttribute("grades", gradeService.findAll());
-		model.addAttribute("reports", reportService.findByUser((User)httpSession.getAttribute("user")));
-		return "mygrade";
-	}
 	
-	
-	/***
-	 * 我的就业情况
-	 * @param model
-	 * @param httpSession
-	 * @return
-	 */
-	@RequestMapping("mywork")
-	public String mywork(Model model,HttpSession httpSession) {
-		model.addAttribute("work",workService.findByUser((User)httpSession.getAttribute("user")));
-		return "mywork";
-	}
-	
-	/***
-	 * 我的成绩
-	 * @param model
-	 * @param key
-	 * @param httpSession
-	 * @return
-	 */
-	@RequestMapping("myscore")
-	public String myscore(Model model,String key,HttpSession httpSession) {
-		if(StringUtils.isNotBlank(key)){
-			model.addAttribute("scores",scoreService.findByCategoryName(key,(User)httpSession.getAttribute("user")));
-		}
-		return "myscore";
-	}
-	
-	/***
-	 * 我的考勤
-	 * @param model
-	 * @param key
-	 * @param httpSession
-	 * @return
-	 * @throws ParseException
-	 */
-	@RequestMapping("myattence")
-	public String myattence(Model model,String key,HttpSession httpSession) throws ParseException {
-		if(StringUtils.isNotBlank(key)){
-			User user=	(User)httpSession.getAttribute("user");
-			List<Attence> lists=attenceService.findAll(user, DateUtils.parseDate("2015-01-01", "yyyy-MM-dd"), DateUtils.parseDate("2019-01-01", "yyyy-MM-dd"));
-			Integer count=0;
-			for(Attence bean:lists){
-				if("缺勤".equals(bean.getState()))
-					count++;
-			}
-			model.addAttribute("attences",lists);
-			model.addAttribute("count",count);
-		}
-		return "myattence";
-	}
 	
 	
 	/***
@@ -218,53 +159,7 @@ public class FrontController {
 		model.addAttribute("teachers",teacherService.findAll());
 		return "teacher";
 	}
-	/***
-	 * 就业情况
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("work")
-	public String work(Model model) {
-		model.addAttribute("works",workService.findAll());
-		return "work";
-	}
-	/***
-	 * 公司简介
-	 * @return
-	 */
-	@RequestMapping("about")
-	public String about() {
-		return "about";
-	}
-	/***
-	 * 报班情况
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("grade")
-	public String grade(Model model) {
-		model.addAttribute("grades", gradeService.findAll());
-		return "grade";
-	}
-	/***
-	 * 查看班级详情 课表啥的
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("viewgrade")
-	public String viewgrade( Long id,Model model) {
-		Grade grade=gradeService.find(id);
-		model.addAttribute("grade", grade);
-		model.addAttribute("week1", timetableService.findByGradeAndWeek(grade,1));
-		model.addAttribute("week2", timetableService.findByGradeAndWeek(grade,2));
-		model.addAttribute("week3", timetableService.findByGradeAndWeek(grade,3));
-		model.addAttribute("week4", timetableService.findByGradeAndWeek(grade,4));
-		model.addAttribute("week5", timetableService.findByGradeAndWeek(grade,5));
-		model.addAttribute("week6", timetableService.findByGradeAndWeek(grade,6));
-		model.addAttribute("week7", timetableService.findByGradeAndWeek(grade,7));
-		return "viewgrade";
-	}
+	
 	/***
 	 * 执行登陆动作
 	 * @param user
@@ -286,6 +181,51 @@ public class FrontController {
     		model.addAttribute("tip","登陆失败 不存在此用户名或密码!");
     		return "login";
     	}
+	}
+	
+	/***
+	 *科研项目
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("project")
+	public String project(Model model,String key,Long cid) {
+		model.addAttribute("cagegorys", categoryService.findByType("20"));
+		Category category=null;
+		if(cid!=null)
+			category=categoryService.find(cid);
+		List<Project> list= projectService.findAll(1, 20, key,category).getContent();
+		model.addAttribute("projects",list);
+		return "project";
+	}
+	
+	@RequestMapping("viewproject")
+	public String viewproject(Long id,Model model) {
+		model.addAttribute("bean",projectService.find(id));
+		return "viewproject";
+	}
+	
+	
+	/***
+	 *专家学者
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("expert")
+	public String expert(Model model,String key,Long cid) {
+		model.addAttribute("cagegorys", categoryService.findByType("10"));
+		Category category=null;
+		if(cid!=null)
+			category=categoryService.find(cid);
+		List<Expert> list= expertService.findAll(1, 20, key,category).getContent();
+		model.addAttribute("experts",list);
+		return "expert";
+	}
+	
+	@RequestMapping("viewexpert")
+	public String viewexpert(Long id,Model model) {
+		model.addAttribute("bean",expertService.find(id));
+		return "viewexpert";
 	}
 }
 

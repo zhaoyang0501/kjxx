@@ -17,30 +17,30 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.pzy.entity.Category;
-import com.pzy.entity.Project;
-import com.pzy.repository.ProjectRepository;
+import com.pzy.entity.Expert;
+import com.pzy.repository.ExpertRepository;
 /***
  * 
  * @author qq:263608237
  *
  */
 @Service
-public class ProjectService {
+public class ExpertService {
      @Autowired
-     private ProjectRepository projectRepository;
+     private ExpertRepository expertRepository;
 
- 	public List<Project> findTop3() {
- 		return projectRepository.findAll(
+ 	public List<Expert> findTop3() {
+ 		return expertRepository.findAll(
  				new PageRequest(0, 15, new Sort(Direction.DESC, "createDate")))
  				.getContent();
  	}
-     public List<Project> findAll() {
-         return (List<Project>) projectRepository.findAll(new Sort(Direction.DESC, "id"));
+     public List<Expert> findAll() {
+         return (List<Expert>) expertRepository.findAll(new Sort(Direction.DESC, "id"));
      }
-     public Page<Project> findAll(final int pageNumber, final int pageSize,final String name){
+     public Page<Expert> findAll(final int pageNumber, final int pageSize,final String name){
          PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
-         Specification<Project> spec = new Specification<Project>() {
-              public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+         Specification<Expert> spec = new Specification<Expert>() {
+              public Predicate toPredicate(Root<Expert> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
               Predicate predicate = cb.conjunction();
               if (name != null) {
                    predicate.getExpressions().add(cb.like(root.get("title").as(String.class), "%"+name+"%"));
@@ -48,14 +48,14 @@ public class ProjectService {
               return predicate;
               }
          };
-         Page<Project> result = (Page<Project>) projectRepository.findAll(spec, pageRequest);
+         Page<Expert> result = (Page<Expert>) expertRepository.findAll(spec, pageRequest);
          return result;
      	}
      
-     public Page<Project> findAll(final int pageNumber, final int pageSize,final String key,final Category category){
+     public Page<Expert> findAll(final int pageNumber, final int pageSize,final String key,final Category category){
          PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
-         Specification<Project> spec = new Specification<Project>() {
-              public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+         Specification<Expert> spec = new Specification<Expert>() {
+              public Predicate toPredicate(Root<Expert> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
               Predicate predicate = cb.conjunction();
               if (key != null) {
                    predicate.getExpressions().add(cb.like(root.get("title").as(String.class), "%"+key+"%"));
@@ -66,14 +66,14 @@ public class ProjectService {
               return predicate;
               }
          };
-         Page<Project> result = (Page<Project>) projectRepository.findAll(spec, pageRequest);
+         Page<Expert> result = (Page<Expert>) expertRepository.findAll(spec, pageRequest);
          return result;
      	}
      
-     public Page<Project> findAll(final int pageNumber, final int pageSize,final Integer type ){
+     public Page<Expert> findAll(final int pageNumber, final int pageSize,final Integer type ){
          PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
-         Specification<Project> spec = new Specification<Project>() {
-              public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+         Specification<Expert> spec = new Specification<Expert>() {
+              public Predicate toPredicate(Root<Expert> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
               Predicate predicate = cb.conjunction();
               if (type != null) {
                   predicate.getExpressions().add(cb.equal(root.get("type").as(Integer.class),type));
@@ -81,16 +81,16 @@ public class ProjectService {
               return predicate;
               }
          };
-         Page<Project> result = (Page<Project>) projectRepository.findAll(spec, pageRequest);
+         Page<Expert> result = (Page<Expert>) expertRepository.findAll(spec, pageRequest);
          return result;
      	}
 		public void delete(Long id){
-			projectRepository.delete(id);
+			expertRepository.delete(id);
 		}
-		public Project find(Long id){
-			  return projectRepository.findOne(id);
+		public Expert find(Long id){
+			  return expertRepository.findOne(id);
 		}
-		public void save(Project project){
-			projectRepository.save(project);
+		public void save(Expert expert){
+			expertRepository.save(expert);
 		}
 }

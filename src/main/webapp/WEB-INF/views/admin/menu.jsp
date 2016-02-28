@@ -33,6 +33,13 @@
 					<li><a href="${pageContext.request.contextPath}/admin/expert/index"><i class="icon-pencil"></i>专家学者管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/expert/create"><i class="icon-pencil"></i>专家学者发布</a></li>
 					
+					<li><a href="${pageContext.request.contextPath}/admin/paper/index"><i class="icon-pencil"></i>科研论文管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/paper/create"><i class="icon-pencil"></i>科研论文发布发布</a></li>
+					
+					
+					<li><a href="${pageContext.request.contextPath}/admin/patent/index"><i class="icon-pencil"></i>专利文献管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/patent/create"><i class="icon-pencil"></i>专利文献发布</a></li>
+					
 					
 					<li><a href="${pageContext.request.contextPath}/admin/category/index"><i class="icon-pencil"></i>系统分类管理</a></li>
 				

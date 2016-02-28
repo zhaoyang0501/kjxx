@@ -18,6 +18,8 @@ import com.pzy.entity.Category;
 import com.pzy.entity.Expert;
 import com.pzy.entity.Grade;
 import com.pzy.entity.News;
+import com.pzy.entity.Paper;
+import com.pzy.entity.Patent;
 import com.pzy.entity.Project;
 import com.pzy.entity.Report;
 import com.pzy.entity.User;
@@ -26,6 +28,8 @@ import com.pzy.service.CategoryService;
 import com.pzy.service.ExpertService;
 import com.pzy.service.GradeService;
 import com.pzy.service.NewsService;
+import com.pzy.service.PaperService;
+import com.pzy.service.PatentService;
 import com.pzy.service.ProjectService;
 import com.pzy.service.ReportService;
 import com.pzy.service.ScoreService;
@@ -66,6 +70,10 @@ public class FrontController {
 	private ProjectService projectService;
 	@Autowired
 	private ExpertService expertService;
+	@Autowired
+	private PaperService paperService;
+	@Autowired
+	private PatentService patentService;
 	/***
 	 * 跳转到首页
 	 * @param model
@@ -226,6 +234,50 @@ public class FrontController {
 	public String viewexpert(Long id,Model model) {
 		model.addAttribute("bean",expertService.find(id));
 		return "viewexpert";
+	}
+	
+	/***
+	 *文献资料
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("paper")
+	public String paper(Model model,String key,Long cid) {
+		model.addAttribute("cagegorys", categoryService.findByType("30"));
+		Category category=null;
+		if(cid!=null)
+			category=categoryService.find(cid);
+		List<Paper> list= paperService.findAll(1, 20, key,category).getContent();
+		model.addAttribute("papers",list);
+		return "paper";
+	}
+	
+	@RequestMapping("viewpaper")
+	public String viewpaper(Long id,Model model) {
+		model.addAttribute("bean",paperService.find(id));
+		return "viewpaper";
+	}
+	
+	/***
+	 *专利文献
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("patent")
+	public String patent(Model model,String key,Long cid) {
+		model.addAttribute("cagegorys", categoryService.findByType("40"));
+		Category category=null;
+		if(cid!=null)
+			category=categoryService.find(cid);
+		List<Patent> list= patentService.findAll(1, 20, key,category).getContent();
+		model.addAttribute("patents",list);
+		return "patent";
+	}
+	
+	@RequestMapping("viewpatent")
+	public String viewpatent(Long id,Model model) {
+		model.addAttribute("bean",patentService.find(id));
+		return "viewpatent";
 	}
 }
 

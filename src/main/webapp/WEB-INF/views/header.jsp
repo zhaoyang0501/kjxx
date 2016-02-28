@@ -85,13 +85,13 @@
                       <a href="index">首页</a>
                     </li>
                     <li>
-                      <a href="report">专家学者信息</a>
+                      <a href="expert">专家学者信息</a>
                     </li>
                       <li>
-                      <a href="grade">科研项目信息</a>
+                      <a href="project">科研项目信息</a>
                     </li>
                     <li>
-                      <a href="teacher">科研论文</a>
+                      <a href="paper">科研论文</a>
                     </li>
                     <li>
                       <a href="work">专利文献</a>

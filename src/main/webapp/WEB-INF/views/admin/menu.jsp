@@ -27,6 +27,22 @@
 			<div class="tab-pane active dailyreport" id="dailyreport">
 				<ul id="nav" class="accordion-nav" >
 				<c:if test="${sessionScope.adminuser.username=='admin'}">
+					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>注册用户管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/category/index"><i class="icon-pencil"></i>系统分类管理</a></li>
+					
+					<li><a href="${pageContext.request.contextPath}/admin/project/index"><i class="icon-pencil"></i>科研项目管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/expert/index"><i class="icon-pencil"></i>专家学者管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/paper/index"><i class="icon-pencil"></i>科研论文管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/patent/index"><i class="icon-pencil"></i>专利文献管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/lab/index"><i class="icon-pencil"></i>实验仪器管理</a></li>
+				
+					<li><a href="${pageContext.request.contextPath}/admin/project/create"><i class="icon-pencil"></i>科研项目发布</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/expert/create"><i class="icon-pencil"></i>专家学者发布</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/paper/create"><i class="icon-pencil"></i>科研论文发布发布</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/patent/create"><i class="icon-pencil"></i>专利文献发布</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/lab/create"><i class="icon-pencil"></i>实验仪器发布</a></li>
+					
+				<!-- 
 					<li><a href="${pageContext.request.contextPath}/admin/project/index"><i class="icon-pencil"></i>科研项目管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/project/create"><i class="icon-pencil"></i>科研项目发布</a></li>
 					
@@ -40,9 +56,10 @@
 					<li><a href="${pageContext.request.contextPath}/admin/patent/index"><i class="icon-pencil"></i>专利文献管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/patent/create"><i class="icon-pencil"></i>专利文献发布</a></li>
 					
+					<li><a href="${pageContext.request.contextPath}/admin/lab/index"><i class="icon-pencil"></i>实验仪器管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/lab/create"><i class="icon-pencil"></i>实验仪器发布</a></li>
+					 -->
 					
-					<li><a href="${pageContext.request.contextPath}/admin/category/index"><i class="icon-pencil"></i>系统分类管理</a></li>
-				
 					<!-- 
 					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>学生管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/teacher/index"><i class="icon-pencil"></i>教师管理</a></li>

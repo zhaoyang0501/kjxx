@@ -68,7 +68,7 @@
           <!--LayerSlider layer-->
           <div class="ls-layer" style="transition3d: 1,4,5,11; transition2d: 2,8,30;">
             <!--LayerSlider background-->
-            <img class="ls-bg" src="img/head1.jpg" alt="layer1-background">
+            <img class="ls-bg" src="img/head11.jpg" alt="layer1-background">
           </div>
           <!--LayerSlider layer-->
           <div class="ls-layer" style="transition3d: 2,3,6,14; transition2d: 4,5,23;">
@@ -79,7 +79,7 @@
           <!--LayerSlider layer-->
           <div class="ls-layer" style="transition3d: 2,3,6,14; transition2d: 4,5,23;">
             <!--LayerSlider background-->
-            <img class="ls-bg" src="img/head6.jpg"  style="width: 1024px" alt="layer1-background">
+            <img class="ls-bg" src="img/head12.jpg"  style="width: 1024px" alt="layer1-background">
           </div>
         </div>
       <!--
@@ -97,12 +97,12 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <h2>${news.title }</h2>
+              <h2>在线科技信息资源挖掘系统成立啦！</h2>
               <p>
-              ${news.context }
+              通过建立该公共服务平台可以实现以下信息平台服务：本溪市科技基本信息资源共享服务、本溪市科技产业技术创新服务两个子系统，以及本溪已存在的科学数据资源共享、国内外科技文献服务、本溪市企事业仪器设备的共享服务、自然科技资源共享、科技管理信息服务、专利与标准服务、政策法规服务、产学研合作与成果转化、检验检测服务、开发区创新服务、协同设计实体服务、产品配套信息服务、科技人才公共服务等多个科技创新信息服务子平台。
               </p>
               <p>
-                <a href="report" class="envor-btn envor-btn-primary envor-btn-normal"><i class="glyphicon glyphicon-check"></i> 立即报名!</a>
+                <a href="register" class="envor-btn envor-btn-primary envor-btn-normal"><i class="glyphicon glyphicon-check"></i> 立即注册!</a>
               </p>
             </div>
           </div>

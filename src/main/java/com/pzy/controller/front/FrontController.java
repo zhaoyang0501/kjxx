@@ -1,22 +1,18 @@
 package com.pzy.controller.front;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pzy.entity.Attence;
 import com.pzy.entity.Category;
 import com.pzy.entity.Expert;
-import com.pzy.entity.Grade;
+import com.pzy.entity.Lab;
 import com.pzy.entity.News;
 import com.pzy.entity.Paper;
 import com.pzy.entity.Patent;
@@ -27,6 +23,7 @@ import com.pzy.service.AttenceService;
 import com.pzy.service.CategoryService;
 import com.pzy.service.ExpertService;
 import com.pzy.service.GradeService;
+import com.pzy.service.LabService;
 import com.pzy.service.NewsService;
 import com.pzy.service.PaperService;
 import com.pzy.service.PatentService;
@@ -74,6 +71,8 @@ public class FrontController {
 	private PaperService paperService;
 	@Autowired
 	private PatentService patentService;
+	@Autowired
+	private LabService labService;
 	/***
 	 * 跳转到首页
 	 * @param model
@@ -278,6 +277,24 @@ public class FrontController {
 	public String viewpatent(Long id,Model model) {
 		model.addAttribute("bean",patentService.find(id));
 		return "viewpatent";
+	}
+	
+	
+	@RequestMapping("lab")
+	public String lab(Model model,String key,Long cid) {
+		model.addAttribute("cagegorys", categoryService.findByType("50"));
+		Category category=null;
+		if(cid!=null)
+			category=categoryService.find(cid);
+		List<Lab> list= labService.findAll(1, 20, key,category).getContent();
+		model.addAttribute("labs",list);
+		return "lab";
+	}
+	
+	@RequestMapping("viewlab")
+	public String viewlab(Long id,Model model) {
+		model.addAttribute("bean",labService.find(id));
+		return "viewlab";
 	}
 }
 

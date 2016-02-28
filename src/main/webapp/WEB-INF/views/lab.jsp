@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -62,7 +61,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="envor-desktop-breadscrubs-inner">
-                <a href="index.html">首页</a><i class="fa fa-angle-double-right"></i>用户登录
+                <a href="index.html">首页</a><i class="fa fa-angle-double-right"></i>实验设备
               </div>
             </div>
           </div>
@@ -70,36 +69,57 @@
       </section>
       
       <section class="envor-section">
-     
-       <div class="container">
-      <c:if test="${tip!=null }">
-      <div class="envor-msg envor-msg-info">
-                <header>
-                	  提示!
-                  <i class="fa fa-times"></i>
-                </header>
-                <p>${tip }</p>
-          </div>
-      </c:if>
-        
-      <div class="row">  
-      <div class="col-lg-3"></div>      
-      <div class="col-lg-6">
-      	<div class="panel panel-default">
-			  <div class="panel-heading">登录</div>
-			  <div class="panel-body">
-			    <form class="form-vertical envor-f1" action="./dologin" method="post">
-			                  <p><label for="rt1-first-name">姓名*</label>  <input type="text"  name='username'></p>
-			                  <p><label for="rt1-first-name">姓名*</label> <input type="password" name='password'></p>
-			         
-			                  <button type="submit" class="btn btn-orange">登陆</button>
-			              </form>
-			  </div>
-			</div>
+        <div class="container">
+           <div class="row" style="margin-bottom: 30px">
+           
+           <div class="col-lg-3">
+            <aside class="envor-widget envor-category-widget">
+              <h3> 分类</h3>
+              <div class="envor-widget-inner">
+                <ul>
+	                <c:forEach var="bean" items="${cagegorys }">
+	                	 <li>
+	                   	 	<p><a href="lab?cid=${bean.id }"><i class="glyphicon glyphicon-folder-open"></i>${bean.name }</a> <a ><i class="fa fa-rss"></i></a></p>
+	                 	 	<small>${bean.remark }</small>
+	                 	 </li>
+	                </c:forEach>
+                </ul>
+              </div>
+            </aside>
+          
+            </div>
+           
+           
+           		<div class="col-lg-9">
+	           		<div style="float: right;padding-bottom: 20px">
+	           		<form action="lab" method="post">
+	           			<input type="text"  name='key' placeholder="输入标题、正文、负责人查找">
+              			<input type="submit" value="查找" class="envor-btn envor-btn-normal envor-btn-primary">
+	           		</form>
+	           		</div>
+           			<table class="table table-bordered">
+						<thead>
+							<tr>
+									<th>标题</th>
+									<th>发表日期</th>
+									<th>查看</th>
+							 </tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${labs }" var="bean">
+						<tr>
+									<th><a href="viewlab?id=${bean.id }">${bean.title }</a> <img src="http://www.bjsxt.com/statics/images/bjsxt/kb_new.gif" style="opacity: 1;"></th>
+									<th>  <fmt:formatDate value="${bean.createDate }" pattern="yyyy-MM-dd"/> </th>
+									<th><a  href="viewproject?id=${bean.id }"><span class="label label-success">详情</span></a></th>
+							 </tr>
+						</c:forEach>
+						</tbody>
+						</table>
+		        </div>
+			</div> 
+			
+			
         </div>
-         <div class="col-lg-3"></div>     
-       </div>
-    </div>
       </section>
     </div>
     

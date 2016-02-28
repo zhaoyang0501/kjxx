@@ -25,30 +25,11 @@
 					<div class="switch-board gray">
 						<ul class="clearfix switch-item">
 							<li><span class="notify-tip">${usernum }</span><a href="javascript:void(0);" class="brown"><i class="icon-user"></i><span>会员数</span></a></li>
-							<li><span class="notify-tip">${num1 }</span><a href="javascript:void(0);" class=" blue-violate"><i class="icon-lightbulb"></i><span>教师数</span></a></li>
 						</ul>
 					</div>
 				</div>
 				</div>
 					<div class="row-fluid">
-				<div class="span12">
-					<div class="content-widgets gray ">
-						<div class="widget-head bondi-blue">
-							<h3><i class="icon-ambulance"></i>公告</h3>
-						</div>
-						<div class="ribbon-wrapper-green">
-							<div class="ribbon-green">
-								NEWS
-							</div>
-						</div>
-						<div class="widget-container">
-							<h3>${news.title }</h3>
-							<p>
-							${news.context }
-							</p>
-						</div>
-					</div>
-				</div>
 				</div>
 			</div>
 		</div>

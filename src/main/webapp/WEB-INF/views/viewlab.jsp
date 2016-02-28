@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -62,7 +61,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="envor-desktop-breadscrubs-inner">
-                <a href="index.html">首页</a><i class="fa fa-angle-double-right"></i>用户登录
+                <a href="index.html">首页</a><i class="fa fa-angle-double-right"></i>实验设备
               </div>
             </div>
           </div>
@@ -70,36 +69,25 @@
       </section>
       
       <section class="envor-section">
-     
-       <div class="container">
-      <c:if test="${tip!=null }">
-      <div class="envor-msg envor-msg-info">
+        <div class="container">
+          <div class="row" style="margin-bottom: 30px">
+          <div class='col-lg-12'>
+			<article >
+                  
                 <header>
-                	  提示!
-                  <i class="fa fa-times"></i>
+                  <h3 style="margin-top: 0px;"><i class="fa fa-pencil"></i> <span>${bean.title }</span> </h3>
+             
                 </header>
-                <p>${tip }</p>
+               	 <p>所属单位： ${bean.unit }</p>
+               	    <p>存放地点：  ${bean.cfdd }</p>
+                  <p>负责人：  ${bean.user }</p>
+                   <p>设备编号：  ${bean.sn }</p>
+             ${bean.remark }
+             
+             
+              </article>   
           </div>
-      </c:if>
-        
-      <div class="row">  
-      <div class="col-lg-3"></div>      
-      <div class="col-lg-6">
-      	<div class="panel panel-default">
-			  <div class="panel-heading">登录</div>
-			  <div class="panel-body">
-			    <form class="form-vertical envor-f1" action="./dologin" method="post">
-			                  <p><label for="rt1-first-name">姓名*</label>  <input type="text"  name='username'></p>
-			                  <p><label for="rt1-first-name">姓名*</label> <input type="password" name='password'></p>
-			         
-			                  <button type="submit" class="btn btn-orange">登陆</button>
-			              </form>
-			  </div>
-			</div>
         </div>
-         <div class="col-lg-3"></div>     
-       </div>
-    </div>
       </section>
     </div>
     
@@ -130,6 +118,26 @@
     <script src="js/layerslider/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
     <script src="js/jquery.rivathemes.js"></script>
     <script type="text/javascript">
+    $('document').ready(function() {
+        /*
+
+        Sorting
+
+        */
+        $('#faq-sorting').rivaSorting({
+          showAll : 1
+        });
+        /*
+
+        Footer News Slider
+
+        */
+        $('#footer-news').rivaSlider({
+          visible : 1,
+          selector : 'envor-post-preview'
+        });
+    });
+
       $('document').ready(function() {
           /*
 

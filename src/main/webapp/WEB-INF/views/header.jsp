@@ -94,10 +94,13 @@
                       <a href="paper">科研论文</a>
                     </li>
                     <li>
-                      <a href="work">专利文献</a>
+                      <a href="patent">专利文献</a>
                     </li>
                     <li>
-                      <a href="about">实验设备</a>
+                      <a href="lab">实验设备</a>
+                    </li>
+                     <li>
+                      <a href="register">注册</a>
                     </li>
                   </ul>
                 <!--
